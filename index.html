@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <main class="main">
+      <div class="container">
+        <div class="main__wrapper">
+          <div class="weather-app">
+            <div class="weather-app__decor"></div>
+            <form class="weather-app__form" action="#">
+              <input class="weather-app__search" type="text" />
+            </form>
+            <div class="weather-info">
+              <div class="weather-info__wrapper">
+                <div class="weather-info__city"></div>
+                <div class="weather-info__icon"></div>
+              </div>
+              <div class="weather-info__description "></div>
+            </div>
+            <ul class="main__date"></ul>
+            <ul class="main__date-hours"></ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

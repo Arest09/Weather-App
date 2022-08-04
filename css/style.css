@@ -1,0 +1,135 @@
+html,
+body,
+main {
+  height: 100%;
+}
+
+body {
+  background-color: #000;
+  overflow: hidden;
+  font-family: "Overpass", sans-serif;
+  font-size: 15px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  height: inherit;
+}
+
+.main__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+.main__date, .main__date-hours {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ec008c;
+  display: flex;
+  justify-content: space-around;
+}
+.main__date {
+  bottom: 50px;
+  right: 20px;
+  width: 142px;
+}
+.main__date-hours {
+  bottom: 10px;
+  right: 50px;
+  width: 75px;
+}
+
+.weather-app {
+  position: relative;
+  max-width: 648px;
+  height: 760px;
+  flex-grow: 1;
+  background: linear-gradient(143.98deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.22) 100%);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 30px;
+}
+.weather-app::after, .weather-app::before, .weather-app__decor::before {
+  content: "";
+  position: absolute;
+  background-size: contain;
+  filter: blur(5px);
+  border-radius: 50%;
+  z-index: -1;
+}
+.weather-app::before {
+  background: linear-gradient(90deg, #ff4e50 0%, #f9d423 100%);
+  width: 450px;
+  height: 450px;
+  bottom: -320px;
+  right: -177px;
+}
+.weather-app::after {
+  background: linear-gradient(131.03deg, #26d0ce 7.78%, #1a2980 89.77%);
+  width: 800px;
+  height: 800px;
+  top: -400px;
+  left: -503px;
+}
+.weather-app__decor::before {
+  background: linear-gradient(90deg, #ec008c 0%, #fc6767 100%);
+  width: 75px;
+  height: 75px;
+  filter: blur(1px);
+  top: -13px;
+  right: -37px;
+}
+.weather-app__search {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  padding: 5px 15px;
+  max-width: 500px;
+  margin: 10px auto 0;
+  border: none;
+  background: linear-gradient(90deg, #5c304a 0%, #533e3e 100%);
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Light 300
+Regular 400
+SemiBold 600 */
+.weather-info__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 380px;
+  margin: 0 auto 50px;
+}
+.weather-info__city {
+  color: #f5f5f5;
+  font-size: 38px;
+  font-weight: 600;
+}
+.weather-info__description {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 100;
+  color: #f5f5f5;
+}
+.weather-info__description-item {
+  margin-bottom: 10px;
+}
+.weather-info__description-item:last-child {
+  margin: 0;
+}
+.weather-info__description-item-temp {
+  position: relative;
+}
+.weather-info__description-item-temp::after {
+  content: "o";
+  position: absolute;
+  top: -6px;
+  right: 41%;
+  font-size: 15px;
+}
