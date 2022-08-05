@@ -135,6 +135,12 @@ SemiBold 600 */
   font-size: 15px;
 }
 
+@media (max-width: 1540px) {
+  .weather-app {
+    max-width: 510px;
+    height: 650px;
+  }
+}
 @media (max-width: 1020px) {
   .weather-app::before {
     width: 350px;
@@ -202,9 +208,4 @@ SemiBold 600 */
   .weather-app::after {
     width: 670px;
   }
-}
-.foo {
-  width: 100px;
-  height: 100px;
-  background-color: #1a2980;
 }
