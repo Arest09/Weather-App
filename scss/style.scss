@@ -23,6 +23,7 @@ body {
     justify-content: center;
     align-items: center;
     height: inherit;
+    padding: 0 15px;
   }
   &__date,
   &__date-hours {
@@ -150,4 +151,90 @@ SemiBold 600 */
       font-size: 15px;
     }
   }
+}
+
+@media (max-width: 1020px) {
+  .weather-app::before {
+    width: 350px;
+    height: 350px;
+    bottom: -220px;
+    right: -100px;
+  }
+}
+
+@media (max-width: 850px) {
+  .weather-app {
+    max-width: 456px;
+    height: 630px;
+
+    &__search {
+      width: 60%;
+    }
+  }
+  .weather-app::before {
+    width: 250px;
+    height: 250px;
+    bottom: -120px;
+    right: -80px;
+  }
+}
+
+@media (max-width: 850px) {
+  .weather-app {
+    &__decor::before {
+      width: 50px;
+      height: 50px;
+      top: -13px;
+      right: -17px;
+    }
+  }
+  .weather-app::before {
+    width: 250px;
+    height: 250px;
+    bottom: -120px;
+    right: -80px;
+  }
+}
+
+@media (max-width: 850px) {
+  .weather-app::before {
+    bottom: -90px;
+    right: 0px;
+  }
+  .weather-info__description-item-temp::after{
+    right: 37%;
+  }
+}
+
+@media (max-width: 500px) {
+  .weather-info {
+    &__wrapper {
+      max-width: 220px;
+    }
+    &__city{
+      font-size: 25px;
+    }
+    &__description {
+      font-size: 20px;
+    }
+  }
+  .weather-info__description-item-temp {
+    display: inline;
+  }
+  .weather-info__description-item-temp::after{
+    right: -16%;
+  }
+  
+}
+
+@media (max-width: 400px) {
+  .weather-app::after{
+    width: 670px;
+  }
+}
+
+.foo {
+  width: 100px;
+  height: 100px;
+  background-color: #1a2980;
 }

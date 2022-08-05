@@ -12,6 +12,9 @@ const weatherAppDescription = document.querySelector(
   ".weather-info__description"
 );
 let weather = {};
+let foo = {}
+
+
 
 function getWeather(city = localStorage.getItem("city")) {
   return fetch(
