@@ -35,7 +35,7 @@ function getHourlyWeather(lon = localStorage.getItem('lon'), lat = localStorage.
     })
     .then((data) => {
       return data;
-    });
+    })
 }
 
 let weather = {};
@@ -95,7 +95,7 @@ function insertData(city, description, temp) {
 
 
 function insertHourlyData(hourly) {
- const hourlyItem = [hourly[0],hourly[4],hourly[8],hourly[10],hourly[13]]
+ const hourlyItem = [hourly[0],hourly[2],hourly[4],hourly[6],hourly[8]]
  const weatherItem = weatherDaily.children;
  
 const temp = {
