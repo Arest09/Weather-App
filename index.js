@@ -65,7 +65,7 @@ function insertData(city, description, temp) {
   mainDate.innerHTML = `<li>${new Date().getFullYear()}</li><li>${
     getDate().month[new Date().getMonth()]
   }</li><li>${getDate().days[new Date().getDay()]}</li>`;
-  mainHours.innerHTML = `<li>${new Date().getHours()}:</li><li>${new Date().getMinutes()}:</li><li>${new Date().getSeconds()}</li>`;
+  mainHours.innerHTML = `<li>${new Date().getHours()}:</li><li>${new Date().getMinutes()}</li>`;
 }
 
 

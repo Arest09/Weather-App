@@ -34,6 +34,9 @@ body {
     display: flex;
     justify-content: space-around;
   }
+  &__date-hours{
+    justify-content: center;
+  }
   &__date {
     bottom: 50px;
     right: 20px;
