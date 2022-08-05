@@ -108,7 +108,7 @@ body {
     max-width: 500px;
     margin: 10px auto 0;
     border: none;
-    background: linear-gradient(90deg, #5c304a 0%, #533e3e 100%);
+    background:linear-gradient(143.98deg, #6b404ca3 0%, rgb(255 0 0 / 26%) 100%);
     border-radius: 5px;
     outline: none;
   }
@@ -205,6 +205,7 @@ SemiBold 600 */
 
     &__search {
       width: 60%;
+      
     }
   }
   .weather-app::before {

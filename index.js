@@ -1,4 +1,6 @@
 "use script";
+
+
 let ICON_URL = ``;
 
 const search = document.querySelector(".weather-app__search");
@@ -58,15 +60,38 @@ async function getData(event) {
   insertHourlyData(hourly);
 }
 
+
+
+
 function insertData(city, description, temp) {
+  
   weatherAppCity.textContent = city;
   weatherIcon.innerHTML = `<img src="${ICON_URL}">`;
   weatherAppDescription.innerHTML = `<p class="weather-info__description-item">${description}</p> <p class="weather-info__description-item weather-info__description-item-temp">${Math.floor(temp)} C</p>`;
   mainDate.innerHTML = `<li>${new Date().getFullYear()}</li><li>${
     getDate().month[new Date().getMonth()]
   }</li><li>${getDate().days[new Date().getDay()]}</li>`;
-  mainHours.innerHTML = `<li>${new Date().getHours()}:</li><li>${new Date().getMinutes()}</li>`;
+  
+  function oclock() {
+    mainHours.innerHTML = `<li>${new Date().getHours()}:</li><li>${new Date().getMinutes()}</li>`;
+  }
+  setInterval(oclock, 1000);
+
+  let mainMinuteLen = document.querySelector('.main__date-hours').textContent.length
+  let mainMinute = document.querySelector('.main__date-hours').textContent;
+
+  mainMinute = mainMinute.split('')
+  mainMinute.splice(3,0,0)
+
+  
+  if (mainMinuteLen < 5) {
+    document.querySelector('.main__date-hours').textContent = mainMinute.join('');
+  }
+
+
 }
+
+
 
 
 function insertHourlyData(hourly) {
