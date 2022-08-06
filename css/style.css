@@ -164,6 +164,14 @@ SemiBold 600 */
   right: -6px;
 }
 
+.error-block h1 {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
 @media (max-width: 1540px) {
   .weather-app {
     max-width: 510px;
