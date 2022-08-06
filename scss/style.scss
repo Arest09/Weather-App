@@ -287,7 +287,7 @@ SemiBold 600 */
 @media (max-width: 400px) {
   .weather-hourly {
     flex-wrap: wrap;
-    padding-top: 30px;
+    padding-top: 10px;
     font-size: 12px;
 
     &__item {
@@ -296,7 +296,8 @@ SemiBold 600 */
   }
   .weather-daily {
     flex-wrap: wrap;
-    padding-top: 30px;
+    padding-top: 20px;
+    height: 260px;
   }
   .weather-info__wrapper {
     margin: 0 auto;
@@ -310,15 +311,16 @@ SemiBold 600 */
 }
 
 @media (max-width: 385px) {
-  .weather-info__icon img{
+  .weather-info__icon img {
     height: 40px;
   }
   .weather-hourly,
   .weather-daily {
+    height: auto;
     padding-top: 0;
   }
   .weather-hourly {
-    margin-bottom: 35px;
+    margin-bottom: 0;
   }
   .weather-hourly__item {
     height: 95px;
@@ -330,7 +332,28 @@ SemiBold 600 */
     font-size: 15px;
     margin-bottom: 15px;
   }
-  .main__date, .main__date-hours {
-    font-size: 15px;
+  .main__date,
+  .main__date-hours {
+    font-size: 13px;
+  }
+  .main__date-hours {
+    bottom: 3px;
+    right: 20px;
+  }
+  .main__date {
+    right: 5px;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 365px) {
+  .weather-daily {
+    height: 245px;
+  }
+}
+
+@media (max-width: 315px) {
+  .weather-daily {
+    height: auto;
   }
 }
