@@ -388,4 +388,4 @@ function timeConverterDaily(UNIX_timestamp){
   return time;
 }
 
-console.log(timeConverterDaily(1660122000))
+console.log(timeConverterDaily(1659754800))
