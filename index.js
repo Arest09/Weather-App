@@ -101,7 +101,7 @@ function insertData(city, description, temp) {
     let hours = new Date().getHours()
     if (sec < 10) {
       sec = '0'+ new Date().getSeconds();
-      min = '0'+ new Date().getSeconds();
+      min = '0'+ new Date().getMinutes();
     }
     if (hours == '0') {
       hours = '0'+ new Date().getHours();
