@@ -8,6 +8,7 @@ const weatherIcon = document.querySelector(".weather-info__icon");
 const weatherAppCity = document.querySelector(".weather-info__city");
 const mainDate = document.querySelector(".main__date");
 const mainHours = document.querySelector(".main__date-hours");
+const weatherhourly = document.querySelector(".weather-hourly");
 const weatherDaily = document.querySelector(".weather-daily");
 
 const weatherAppDescription = document.querySelector(
@@ -35,10 +36,7 @@ function getWeather(city = localStorage.getItem("city")) {
     });
 }
 
-function getHourlyWeather(
-  lon = localStorage.getItem("lon"),
-  lat = localStorage.getItem("lat")
-) {
+function getHourlyWeather(lon = localStorage.getItem("lon"),lat = localStorage.getItem("lat")) {
   return fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=0bbbc7d0f2ead1064e133292c30ba495&units=metric`
   )
@@ -71,11 +69,12 @@ async function getData(event) {
     const { icon, description, main } = weather.weather[0];
     const { temp } = weather.main;
 
-    const { hourly } = hourlyWeather;
+    const { hourly,daily } = hourlyWeather;
     ICON_URL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
     insertData(city, description, temp);
     insertHourlyData(hourly);
+    insertDailyData(daily)
   } catch (error) {
     document.querySelector(".error-block").style.display = "block";
     document.querySelector(
@@ -95,7 +94,7 @@ function insertData(city, description, temp) {
     getDate().month[new Date().getMonth()]
   }</li><li>${getDate().days[new Date().getDay()]}</li>`;
 
-  function oclock() {
+  function time() {
     let sec = new Date().getSeconds();
     let min = new Date().getMinutes();
     let hours = new Date().getHours()
@@ -112,12 +111,12 @@ function insertData(city, description, temp) {
     mainHours.innerHTML = `<li>${hours}:</li><li>${min}</li>:<li>${sec}</li>`;
     
   }
-  setInterval(oclock, 1000);
+  setInterval(time, 1000);
 }
 
 function insertHourlyData(hourly) {
   const hourlyItem = [hourly[0], hourly[2], hourly[4], hourly[6], hourly[8]];
-  const weatherItem = weatherDaily.children;
+  const weatherItem = weatherhourly.children;
 
   const temp = {
     temp1: Math.floor(hourlyItem[0].temp),
@@ -135,47 +134,130 @@ function insertHourlyData(hourly) {
     icon5: hourlyItem[4].weather[0].icon,
   };
 
-  weatherItem[0].querySelector(".weather-daily__first-time").textContent =
+  weatherItem[0].querySelector(".weather-hourly__first-time").textContent =
     timeConverter(hourlyItem[0].dt);
-  weatherItem[1].querySelector(".weather-daily__second-time").textContent =
+  weatherItem[1].querySelector(".weather-hourly__second-time").textContent =
     timeConverter(hourlyItem[1].dt);
-  weatherItem[2].querySelector(".weather-daily__third-time").textContent =
+  weatherItem[2].querySelector(".weather-hourly__third-time").textContent =
     timeConverter(hourlyItem[2].dt);
-  weatherItem[3].querySelector(".weather-daily__fourth-time").textContent =
+  weatherItem[3].querySelector(".weather-hourly__fourth-time").textContent =
     timeConverter(hourlyItem[3].dt);
-  weatherItem[4].querySelector(".weather-daily__fifth-time").textContent =
+  weatherItem[4].querySelector(".weather-hourly__fifth-time").textContent =
     timeConverter(hourlyItem[4].dt);
 
-  timeLen1 = document.querySelector(".weather-daily__first-time").textContent
+  timeLen1 = document.querySelector(".weather-hourly__first-time").textContent
     .length;
-  timeLen2 = document.querySelector(".weather-daily__second-time").textContent
+  timeLen2 = document.querySelector(".weather-hourly__second-time").textContent
     .length;
-  timeLen3 = document.querySelector(".weather-daily__third-time").textContent
+  timeLen3 = document.querySelector(".weather-hourly__third-time").textContent
     .length;
-  timeLen4 = document.querySelector(".weather-daily__fourth-time").textContent
+  timeLen4 = document.querySelector(".weather-hourly__fourth-time").textContent
     .length;
-  timeLen5 = document.querySelector(".weather-daily__fifth-time").textContent
+  timeLen5 = document.querySelector(".weather-hourly__fifth-time").textContent
     .length;
   if (timeLen1 < 5) {
-    document.querySelector(".weather-daily__first-time").textContent =
-      document.querySelector(".weather-daily__first-time").textContent + 0;
+    document.querySelector(".weather-hourly__first-time").textContent =
+      document.querySelector(".weather-hourly__first-time").textContent + 0;
   }
   if (timeLen2 < 5) {
-    document.querySelector(".weather-daily__second-time").textContent =
-      document.querySelector(".weather-daily__second-time").textContent + 0;
+    document.querySelector(".weather-hourly__second-time").textContent =
+      document.querySelector(".weather-hourly__second-time").textContent + 0;
   }
   if (timeLen3 < 5) {
-    document.querySelector(".weather-daily__third-time").textContent =
-      document.querySelector(".weather-daily__third-time").textContent + 0;
+    document.querySelector(".weather-hourly__third-time").textContent =
+      document.querySelector(".weather-hourly__third-time").textContent + 0;
   }
   if (timeLen4 < 5) {
-    document.querySelector(".weather-daily__fourth-time").textContent =
-      document.querySelector(".weather-daily__fourth-time").textContent + 0;
+    document.querySelector(".weather-hourly__fourth-time").textContent =
+      document.querySelector(".weather-hourly__fourth-time").textContent + 0;
   }
   if (timeLen5 < 5) {
-    document.querySelector(".weather-daily__fifth-time").textContent =
-      document.querySelector(".weather-daily__fifth-time").textContent + 0;
+    document.querySelector(".weather-hourly__fifth-time").textContent =
+      document.querySelector(".weather-hourly__fifth-time").textContent + 0;
   }
+
+  weatherItem[0].querySelector(
+    ".weather-hourly__first-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon1}@2x.png`}>`;
+  weatherItem[1].querySelector(
+    ".weather-hourly__second-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon2}@2x.png`}>`;
+  weatherItem[2].querySelector(
+    ".weather-hourly__third-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon3}@2x.png`}>`;
+  weatherItem[3].querySelector(
+    ".weather-hourly__fourth-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon4}@2x.png`}>`;
+  weatherItem[4].querySelector(
+    ".weather-hourly__fifth-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon5}@2x.png`}>`;
+
+  weatherItem[0].querySelector(
+    ".weather-hourly__first-temp"
+  ).textContent = `${temp.temp1} C`;
+  weatherItem[1].querySelector(
+    ".weather-hourly__second-temp"
+  ).textContent = ` ${temp.temp2} C`;
+  weatherItem[2].querySelector(
+    ".weather-hourly__third-temp"
+  ).textContent = `${temp.temp3} C`;
+  weatherItem[3].querySelector(
+    ".weather-hourly__fourth-temp"
+  ).textContent = `${temp.temp4} C`;
+  weatherItem[4].querySelector(
+    ".weather-hourly__fifth-temp"
+  ).textContent = `${temp.temp5} C`;
+}
+
+
+
+
+function insertDailyData(daily) {
+  console.log(daily)
+  const dailyItem = [daily[0], daily[1], daily[2], daily[3], daily[4],daily[5],daily[6],daily[7]];
+  const weatherItem = weatherDaily.children;
+
+   const temp = {
+    temp1: Math.floor(dailyItem[0].temp.eve),
+    temp2: Math.floor(dailyItem[1].temp.eve),
+    temp3: Math.floor(dailyItem[2].temp.eve),
+    temp4: Math.floor(dailyItem[3].temp.eve),
+    temp5: Math.floor(dailyItem[4].temp.eve),
+
+    temp6: Math.floor(dailyItem[5].temp.eve),
+    temp7: Math.floor(dailyItem[6].temp.eve),
+    temp8: Math.floor(dailyItem[7].temp.eve),
+  };
+
+  const icons = {
+    icon1: dailyItem[0].weather[0].icon,
+    icon2: dailyItem[1].weather[0].icon,
+    icon3: dailyItem[2].weather[0].icon,
+    icon4: dailyItem[3].weather[0].icon,
+    icon5: dailyItem[4].weather[0].icon,
+
+    icon6: dailyItem[5].weather[0].icon,
+    icon7: dailyItem[6].weather[0].icon,
+    icon8: dailyItem[7].weather[0].icon,
+  };
+
+  weatherItem[0].querySelector(".weather-daily__first-time").textContent =
+  timeConverterDaily(dailyItem[0].dt);
+  weatherItem[1].querySelector(".weather-daily__second-time").textContent =
+  timeConverterDaily(dailyItem[1].dt);
+  weatherItem[2].querySelector(".weather-daily__third-time").textContent =
+  timeConverterDaily(dailyItem[2].dt);
+  weatherItem[3].querySelector(".weather-daily__fourth-time").textContent =
+  timeConverterDaily(dailyItem[3].dt);
+  weatherItem[4].querySelector(".weather-daily__fifth-time").textContent =
+  timeConverterDaily(dailyItem[4].dt);
+  weatherItem[5].querySelector(".weather-daily__sixth-time").textContent =
+  timeConverterDaily(dailyItem[5].dt);
+  weatherItem[6].querySelector(".weather-daily__seventh-time").textContent =
+  timeConverterDaily(dailyItem[6].dt);
+  weatherItem[7].querySelector(".weather-daily__eighth-time").textContent =
+  timeConverterDaily(dailyItem[7].dt);
+
 
   weatherItem[0].querySelector(
     ".weather-daily__first-icon"
@@ -192,6 +274,15 @@ function insertHourlyData(hourly) {
   weatherItem[4].querySelector(
     ".weather-daily__fifth-icon"
   ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon5}@2x.png`}>`;
+  weatherItem[5].querySelector(
+    ".weather-daily__sixth-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon6}@2x.png`}>`;
+  weatherItem[6].querySelector(
+    ".weather-daily__seventh-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon7}@2x.png`}>`;
+  weatherItem[7].querySelector(
+    ".weather-daily__eighth-icon"
+  ).innerHTML = `<img class="icon" src =${`http://openweathermap.org/img/wn/${icons.icon8}@2x.png`}>`; /* eighth */
 
   weatherItem[0].querySelector(
     ".weather-daily__first-temp"
@@ -207,8 +298,19 @@ function insertHourlyData(hourly) {
   ).textContent = `${temp.temp4} C`;
   weatherItem[4].querySelector(
     ".weather-daily__fifth-temp"
-  ).textContent = `${temp.temp5} C`;
+  ).textContent = `${temp.temp5} C`; 
+  weatherItem[5].querySelector(
+    ".weather-daily__sixth-temp"
+  ).textContent = `${temp.temp6} C`; 
+  weatherItem[6].querySelector(
+    ".weather-daily__seventh-temp"
+  ).textContent = `${temp.temp7} C`; 
+  weatherItem[7].querySelector(
+    ".weather-daily__eighth-temp"
+  ).textContent = `${temp.temp8} C`; 
 }
+
+
 
 function getDate() {
   const month = [
@@ -242,15 +344,25 @@ if (localStorage.getItem("city")) {
     const { name: city } = weather;
     const { icon, description, main } = weather.weather[0];
     const { temp } = weather.main;
-    const { hourly } = hourlyWeather;
+    const { hourly,daily } = hourlyWeather;
     ICON_URL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     insertData(city, description, temp);
     insertHourlyData(hourly);
+    insertDailyData(daily)
   }
   start();
 }
 
 function timeConverter(UNIX_timestamp) {
+  let a = new Date(UNIX_timestamp * 1000);
+
+  let hour = a.getHours();
+  let min = a.getMinutes();
+  let time = hour + ":" + min;
+  return time;
+}
+
+function timeConverterDaily(UNIX_timestamp){
   let a = new Date(UNIX_timestamp * 1000);
   let months = [
     "Jan",
@@ -266,8 +378,13 @@ function timeConverter(UNIX_timestamp) {
     "Nov",
     "Dec",
   ];
+  const days = ["Mon", "Tues", "Wedn", "Thurs", "Fri", "Sat", "Sun"];
+  let date = a.getDate();
   let hour = a.getHours();
   let min = a.getMinutes();
-  let time = hour + ":" + min;
+  let day = days[a.getDay()];
+  let time = day;
   return time;
 }
+
+console.log(timeConverterDaily(1659862800))
