@@ -27,7 +27,7 @@ function getWeather(city = localStorage.getItem("city")) {
   return delay()
     .then(() => {
       return fetch(
-        `https://api.openweathermap.org/data/2.5/weather?appid=0bbbc7d0f2ead1064e133292c30ba495&lang=&units=metric&q=${city}&lang=ru`
+        `https://api.openweathermap.org/data/2.5/weather?appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&q=${city}&units=metric`
       );
     })
     .then((data) => {
@@ -36,9 +36,12 @@ function getWeather(city = localStorage.getItem("city")) {
     });
 }
 
-function getHourlyWeather(lon = localStorage.getItem("lon"),lat = localStorage.getItem("lat")) {
+function getHourlyWeather(
+  lon = localStorage.getItem("lon"),
+  lat = localStorage.getItem("lat")
+) {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=0bbbc7d0f2ead1064e133292c30ba495&units=metric`
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&units=metric`
   )
     .then((data) => {
       localStorage.setItem("lat", lat);
@@ -69,12 +72,12 @@ async function getData(event) {
     const { icon, description, main } = weather.weather[0];
     const { temp } = weather.main;
 
-    const { hourly,daily } = hourlyWeather;
+    const { hourly, daily } = hourlyWeather;
     ICON_URL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
     insertData(city, description, temp);
     insertHourlyData(hourly);
-    insertDailyData(daily)
+    insertDailyData(daily);
   } catch (error) {
     document.querySelector(".error-block").style.display = "block";
     document.querySelector(
@@ -97,19 +100,18 @@ function insertData(city, description, temp) {
   function time() {
     let sec = new Date().getSeconds();
     let min = new Date().getMinutes();
-    let hours = new Date().getHours()
+    let hours = new Date().getHours();
     if (sec < 10) {
-      sec = '0'+ new Date().getSeconds();
+      sec = "0" + new Date().getSeconds();
     }
 
     if (min < 10) {
-      min = '0'+ new Date().getMinutes();
+      min = "0" + new Date().getMinutes();
     }
-    if (hours == '0') {
-      hours = '0'+ new Date().getHours();
+    if (hours == "0") {
+      hours = "0" + new Date().getHours();
     }
     mainHours.innerHTML = `<li>${hours}:</li><li>${min}</li>:<li>${sec}</li>`;
-    
   }
   setInterval(time, 1000);
 }
@@ -209,15 +211,21 @@ function insertHourlyData(hourly) {
   ).textContent = `${temp.temp5} C`;
 }
 
-
-
-
 function insertDailyData(daily) {
-  console.log(daily)
-  const dailyItem = [daily[0], daily[1], daily[2], daily[3], daily[4],daily[5],daily[6],daily[7]];
+  console.log(daily);
+  const dailyItem = [
+    daily[0],
+    daily[1],
+    daily[2],
+    daily[3],
+    daily[4],
+    daily[5],
+    daily[6],
+    daily[7],
+  ];
   const weatherItem = weatherDaily.children;
 
-   const temp = {
+  const temp = {
     temp1: Math.floor(dailyItem[0].temp.eve),
     temp2: Math.floor(dailyItem[1].temp.eve),
     temp3: Math.floor(dailyItem[2].temp.eve),
@@ -242,22 +250,21 @@ function insertDailyData(daily) {
   };
 
   weatherItem[0].querySelector(".weather-daily__first-time").textContent =
-  timeConverterDaily(dailyItem[0].dt);
+    timeConverterDaily(dailyItem[0].dt);
   weatherItem[1].querySelector(".weather-daily__second-time").textContent =
-  timeConverterDaily(dailyItem[1].dt);
+    timeConverterDaily(dailyItem[1].dt);
   weatherItem[2].querySelector(".weather-daily__third-time").textContent =
-  timeConverterDaily(dailyItem[2].dt);
+    timeConverterDaily(dailyItem[2].dt);
   weatherItem[3].querySelector(".weather-daily__fourth-time").textContent =
-  timeConverterDaily(dailyItem[3].dt);
+    timeConverterDaily(dailyItem[3].dt);
   weatherItem[4].querySelector(".weather-daily__fifth-time").textContent =
-  timeConverterDaily(dailyItem[4].dt);
+    timeConverterDaily(dailyItem[4].dt);
   weatherItem[5].querySelector(".weather-daily__sixth-time").textContent =
-  timeConverterDaily(dailyItem[5].dt);
+    timeConverterDaily(dailyItem[5].dt);
   weatherItem[6].querySelector(".weather-daily__seventh-time").textContent =
-  timeConverterDaily(dailyItem[6].dt);
+    timeConverterDaily(dailyItem[6].dt);
   weatherItem[7].querySelector(".weather-daily__eighth-time").textContent =
-  timeConverterDaily(dailyItem[7].dt);
-
+    timeConverterDaily(dailyItem[7].dt);
 
   weatherItem[0].querySelector(
     ".weather-daily__first-icon"
@@ -298,19 +305,17 @@ function insertDailyData(daily) {
   ).textContent = `${temp.temp4} C`;
   weatherItem[4].querySelector(
     ".weather-daily__fifth-temp"
-  ).textContent = `${temp.temp5} C`; 
+  ).textContent = `${temp.temp5} C`;
   weatherItem[5].querySelector(
     ".weather-daily__sixth-temp"
-  ).textContent = `${temp.temp6} C`; 
+  ).textContent = `${temp.temp6} C`;
   weatherItem[6].querySelector(
     ".weather-daily__seventh-temp"
-  ).textContent = `${temp.temp7} C`; 
+  ).textContent = `${temp.temp7} C`;
   weatherItem[7].querySelector(
     ".weather-daily__eighth-temp"
-  ).textContent = `${temp.temp8} C`; 
+  ).textContent = `${temp.temp8} C`;
 }
-
-
 
 function getDate() {
   const month = [
@@ -344,11 +349,11 @@ if (localStorage.getItem("city")) {
     const { name: city } = weather;
     const { icon, description, main } = weather.weather[0];
     const { temp } = weather.main;
-    const { hourly,daily } = hourlyWeather;
+    const { hourly, daily } = hourlyWeather;
     ICON_URL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     insertData(city, description, temp);
     insertHourlyData(hourly);
-    insertDailyData(daily)
+    insertDailyData(daily);
   }
   start();
 }
@@ -362,7 +367,7 @@ function timeConverter(UNIX_timestamp) {
   return time;
 }
 
-function timeConverterDaily(UNIX_timestamp){
+function timeConverterDaily(UNIX_timestamp) {
   let a = new Date(UNIX_timestamp * 1000);
   let months = [
     "Jan",
@@ -379,7 +384,7 @@ function timeConverterDaily(UNIX_timestamp){
     "Dec",
   ];
   /* const days = ["Mon", "Tues", "Wedn", "Thurs", "Fri", "Sat", "Sun"]; */
-  const days = ["Sun", "Mon", "Tues", "Wedn", "Thurs", "Fri", "Sat"];
+  const days = ["Воскр", "Пон", "Втор", "Ср", "Чет", "Пят", "Суб"];
   let date = a.getDate();
   let hour = a.getHours();
   let min = a.getMinutes();
@@ -388,4 +393,4 @@ function timeConverterDaily(UNIX_timestamp){
   return time;
 }
 
-console.log(timeConverterDaily(1659754800))
+console.log(timeConverterDaily(1659754800));
