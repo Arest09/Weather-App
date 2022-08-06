@@ -76,14 +76,13 @@ async function getData(event) {
 
     insertData(city, description, temp);
     insertHourlyData(hourly);
-    
   } catch (error) {
-    document.querySelector(".error-block").style.display = "block"
-    document.querySelector(".error-block").innerHTML = `<h1>incorrect city</h1>`;
+    document.querySelector(".error-block").style.display = "block";
+    document.querySelector(
+      ".error-block"
+    ).innerHTML = `<h1>incorrect city</h1>`;
     document.querySelector(".weather-info").style.display = "none";
   }
-
-
 }
 
 function insertData(city, description, temp) {
@@ -97,21 +96,20 @@ function insertData(city, description, temp) {
   }</li><li>${getDate().days[new Date().getDay()]}</li>`;
 
   function oclock() {
-    mainHours.innerHTML = `<li>${new Date().getHours()}:</li><li>${new Date().getMinutes()}</li>`;
+    let sec = new Date().getSeconds();
+    let min = new Date().getMinutes();
+    let hours = new Date().getHours()
+    if (sec < 10) {
+      sec = '0'+ new Date().getSeconds();
+      min = '0'+ new Date().getSeconds();
+    }
+    if (hours == '0') {
+      hours = '0'+ new Date().getHours();
+    }
+    mainHours.innerHTML = `<li>${hours}:</li><li>${min}</li>:<li>${sec}</li>`;
+    
   }
   setInterval(oclock, 1000);
-
-  let mainMinuteLen =
-    document.querySelector(".main__date-hours").textContent.length;
-  let mainMinute = document.querySelector(".main__date-hours").textContent;
-
-  mainMinute = mainMinute.split("");
-  mainMinute.splice(3, 0, 0);
-
-  if (mainMinuteLen < 5) {
-    document.querySelector(".main__date-hours").textContent =
-      mainMinute.join("");
-  }
 }
 
 function insertHourlyData(hourly) {
