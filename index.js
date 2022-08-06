@@ -378,7 +378,8 @@ function timeConverterDaily(UNIX_timestamp){
     "Nov",
     "Dec",
   ];
-  const days = ["Mon", "Tues", "Wedn", "Thurs", "Fri", "Sat", "Sun"];
+  /* const days = ["Mon", "Tues", "Wedn", "Thurs", "Fri", "Sat", "Sun"]; */
+  const days = ["Sun", "Mon", "Tues", "Wedn", "Thurs", "Fri", "Sat"];
   let date = a.getDate();
   let hour = a.getHours();
   let min = a.getMinutes();
@@ -387,4 +388,4 @@ function timeConverterDaily(UNIX_timestamp){
   return time;
 }
 
-console.log(timeConverterDaily(1659862800))
+console.log(timeConverterDaily(1660122000))
