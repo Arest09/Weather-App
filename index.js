@@ -19,15 +19,20 @@ function delay() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
-    }, 1000);
+    }, 1);
   });
 }
+
+if (localStorage.getItem('city')) {
+  search.value = localStorage.getItem('city')
+}
+
 
 function getWeather(city = localStorage.getItem("city")) {
   return delay()
     .then(() => {
       return fetch(
-        `https://api.openweathermap.org/data/2.5/weather?appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&q=${city}&units=metric`
+        `https://ru.api.openweathermap.org//data/2.5/weather?appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&q=${city}&units=metric`
       );
     })
     .then((data) => {
@@ -41,7 +46,7 @@ function getHourlyWeather(
   lat = localStorage.getItem("lat")
 ) {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&units=metric`
+    `https://ru.api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&units=metric`
   )
     .then((data) => {
       localStorage.setItem("lat", lat);
@@ -63,7 +68,7 @@ async function getData(event) {
     document.querySelector(".weather-info").style.display = "block";
     document.querySelector(".error-block").style.display = "none";
 
-    weather = await getWeather(search.value);
+    weather = await getWeather(search.value.trim());
 
     const { name: city } = weather;
     const { lon, lat } = weather.coord; //coord for other fetch
@@ -394,3 +399,5 @@ function timeConverterDaily(UNIX_timestamp) {
 }
 
 console.log(timeConverterDaily(1659754800));
+
+
