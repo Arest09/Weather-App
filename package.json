@@ -1,5 +1,12 @@
 {
+  "main": "index.js",
+  "homepage": "https://arest09.github.io/Weather-App/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d weatherApp"
+  },
   "dependencies": {
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "gh-pages": "^4.0.0"
   }
 }
