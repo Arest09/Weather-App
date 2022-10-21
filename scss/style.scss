@@ -116,6 +116,10 @@ body {
     border-radius: 5px;
     outline: none;
   }
+  &__search::placeholder{
+    color: #ccc2c2;
+  }
+  
 }
 
 /* Light 300

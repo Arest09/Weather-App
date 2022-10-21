@@ -99,6 +99,9 @@ body {
   border-radius: 5px;
   outline: none;
 }
+.weather-app__search::placeholder {
+  color: #ccc2c2;
+}
 
 /* Light 300
 Regular 400

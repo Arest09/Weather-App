@@ -32,7 +32,7 @@ function getWeather(city = localStorage.getItem("city")) {
   return delay()
     .then(() => {
       return fetch(
-        `https://ru.api.openweathermap.org//data/2.5/weather?appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&q=${city}&units=metric`
+        `https://ru.api.openweathermap.org/data/2.5/weather?appid=0bbbc7d0f2ead1064e133292c30ba495&lang=ru&q=${city}&units=metric`
       );
     })
     .then((data) => {
@@ -69,6 +69,7 @@ async function getData(event) {
     document.querySelector(".error-block").style.display = "none";
 
     weather = await getWeather(search.value.trim());
+   
 
     const { name: city } = weather;
     const { lon, lat } = weather.coord; //coord for other fetch
@@ -84,6 +85,7 @@ async function getData(event) {
     insertHourlyData(hourly);
     insertDailyData(daily);
   } catch (error) {
+    console.log(error)
     document.querySelector(".error-block").style.display = "block";
     document.querySelector(
       ".error-block"
@@ -399,5 +401,4 @@ function timeConverterDaily(UNIX_timestamp) {
 }
 
 console.log(timeConverterDaily(1659754800));
-
 
