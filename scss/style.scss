@@ -97,6 +97,27 @@ body {
     top: -13px;
     right: -37px;
   }
+  &__form{
+    position: relative;
+  }
+
+  &__wrapper{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__btn{
+    padding: 4px 4px;
+    color: white;
+    background-color: #000;
+    position: absolute;
+    right: 13px;
+    top: 5px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
 
   &__search {
     color: #ffff;
@@ -132,6 +153,7 @@ SemiBold 600 */
     align-items: center;
     max-width: 380px;
     margin: 0 auto;
+
   }
   &__city {
     color: #f5f5f5;

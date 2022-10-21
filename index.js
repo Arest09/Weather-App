@@ -347,6 +347,7 @@ function getDate() {
 }
 
 form.addEventListener("submit", getData);
+document.querySelector('.weather-app__btn').addEventListener('click',getData)
 
 if (localStorage.getItem("city")) {
   let weather = {};
